@@ -113,4 +113,13 @@ return [
     | use 'documents' as your default filter.
      */
     'jobs'      => [],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Filemanager default rules for uploading files
+    |--------------------------------------------------------------------------
+    |
+     */
+    'file_upload_rules' => [],
+
 ];

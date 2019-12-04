@@ -63,12 +63,18 @@ class FilemanagerToolController extends Controller
     {
         $uploadingFolder = $request->folder ?? false;
 
+        $rules = config('filemanager.file_upload_rules', []);
+
+        if ($request->rules && $request->rules !== '[]') {
+            $rules = $this->getRules($request->rules);
+        }
+
         return $this->service->uploadFile(
             $request->file,
             $request->current ?? '',
             $request->visibility,
             $uploadingFolder,
-            $request->rules ? $this->getRules($request->rules) : []
+            $rules
         );
     }
 
