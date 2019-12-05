@@ -4,7 +4,7 @@
             <div @click="clickStrategy"
                  ref="card"
                  :loading="loading"
-                 :class="{ 'opacity-50': dragOver }"
+                 :class="{ 'opacity-50': dragOver, 'folder-back' : file.id == 'folder_back' }"
                  class="card relative flex flex-wrap justify-center border border-lg border-50 overflow-hidden px-0 py-0 cursor-pointer">
 
                 <template v-if="loading">
@@ -14,9 +14,8 @@
                 </template>
 
                 <template v-if="file.id == 'folder_back'">
-                    <svg  class="w-2/3 h-5/6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M20 6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2h7.41l2 2H20zM4 6v12h16V8h-7.41l-2-2H4z" fill="#B3C1D1"/>
-                        <path fill="#b3c1d1" d="M12.307 10.628v5a.32.32 0 0 1-.64 0v-5l-1.68 1.71a.323.323 0 0 1-.49-.42l2.25-2.25a.32.32 0 0 1 .45 0l2.25 2.25a.323.323 0 1 1-.42.49l-1.71-1.71-.01-.07z"/>
+                    <svg class="w-2/3 h-5/6" enable-background="new 0 0 32 32" version="1.1" viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <path d="M18.221,7.206l9.585,9.585c0.879,0.879,0.879,2.317,0,3.195l-0.8,0.801c-0.877,0.878-2.316,0.878-3.194,0  l-7.315-7.315l-7.315,7.315c-0.878,0.878-2.317,0.878-3.194,0l-0.8-0.801c-0.879-0.878-0.879-2.316,0-3.195l9.587-9.585  c0.471-0.472,1.103-0.682,1.723-0.647C17.115,6.524,17.748,6.734,18.221,7.206z" fill="#b3c1d0"/>
                     </svg>
 
                     <div class="h-1/6 w-full text-center text-xs  border-t border-30 bg-50 flex items-center justify-center">
@@ -60,7 +59,7 @@
         <template v-if="view == 'list'">
 
             <template v-if="file.id == 'folder_back'">
-                <tr @click="goToFolder" :loading="loading" v-bind:key="file.id"  class="cursor-pointer">
+                <tr @click="goToFolder" :loading="loading" v-bind:key="file.id" class="folder-back cursor-pointer">
                     <td>
                         <div class="w-full flex justify-center items-center">
                             <template v-if="loading">
@@ -69,9 +68,8 @@
                                 </div>
                             </template>
 
-                            <svg class="w-24 h-24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M20 6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2h7.41l2 2H20zM4 6v12h16V8h-7.41l-2-2H4z" fill="#B3C1D1"/>
-                                <path fill="#b3c1d1" d="M12.307 10.628v5a.32.32 0 0 1-.64 0v-5l-1.68 1.71a.323.323 0 0 1-.49-.42l2.25-2.25a.32.32 0 0 1 .45 0l2.25 2.25a.323.323 0 1 1-.42.49l-1.71-1.71-.01-.07z"/>
+                            <svg class="w-24 h-24" enable-background="new 0 0 32 32" version="1.1" viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <path d="M18.221,7.206l9.585,9.585c0.879,0.879,0.879,2.317,0,3.195l-0.8,0.801c-0.877,0.878-2.316,0.878-3.194,0  l-7.315-7.315l-7.315,7.315c-0.878,0.878-2.317,0.878-3.194,0l-0.8-0.801c-0.879-0.878-0.879-2.316,0-3.195l9.587-9.585  c0.471-0.472,1.103-0.682,1.723-0.647C17.115,6.524,17.748,6.734,18.221,7.206z" fill="#b3c1d0"/>
                             </svg>
                         </div>
                     </td>
@@ -234,6 +232,10 @@ export default {
             display: flex;
         }
     }
+}
+
+.folder-back {
+    background: #f4f7fa;
 }
 
 .h-5\/6 {
