@@ -37,6 +37,10 @@
                             <span v-if="selectedFiles.length > 0" class="ml-2 text-sm">{{ selectedFiles.length }}</span>
                         </button>
 
+                        <button v-if="multiSelecting && this.files.length > 0" @click="onSelectAllFiles" class="btn btn-default btn-primary mr-3">
+                            {{ __('Select all') }}
+                        </button>
+
                         <button v-if="multiSelecting && selectedFiles.length > 0" type="button" class="btn btn-default btn-small btn-danger text-white mr-3" @click="openMultiDeleteModal">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" aria-labelledby="delete" role="presentation"><path fill-rule="nonzero" d="M6 4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2h5a1 1 0 0 1 0 2h-1v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6H1a1 1 0 1 1 0-2h5zM4 6v12h12V6H4zm8-2V2H8v2h4zM8 8a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V9a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V9a1 1 0 0 1 1-1z"></path></svg>
                         </button>
@@ -192,6 +196,7 @@ export default {
         multiSelecting: false,
         selectedFiles: [], // { type: 'folder/file', path: '...'' }
         buttons: [],
+        selectAllFiles: false,
     }),
 
     async created() {
@@ -246,6 +251,21 @@ export default {
                         { type: 'error' }
                     );
                 });
+        },
+
+        onSelectAllFiles() {
+            this.selectAllFiles = ! this.selectAllFiles;
+
+            this.selectedFiles = [];
+
+            if (this.selectAllFiles) {
+                for (let index in this.files) {
+                    this.selectedFiles.push({
+                        type: this.files[index].type,
+                        path: this.files[index].path,
+                    });
+                }
+            }
         },
 
         showModalCreateFolder() {
